@@ -1,0 +1,53 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/shingo/.ohos/config/default_ohos_yOf-GA2fWpXB6hC4iszIT0eBQcJGIKsmKqsylk2vJV8=.cer",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001A296857B4334BF9BBC5186AA0C7127D55EF4A4A58837AE09D29D8F74DCB1D6EF53CA808A65463",
+          "profile": "/Users/shingo/.ohos/config/default_ohos_yOf-GA2fWpXB6hC4iszIT0eBQcJGIKsmKqsylk2vJV8=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/shingo/.ohos/config/default_ohos_yOf-GA2fWpXB6hC4iszIT0eBQcJGIKsmKqsylk2vJV8=.p12",
+          "storePassword": "0000001A97C5C57FA36224D2A9276353365C7B0A2FB0F7522E15A7CE8C69AC3186385FBBD9CD60C8BD52"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compatibleSdkVersion": "5.1.0(18)",
+        "runtimeOS": "HarmonyOS",
+        "targetSdkVersion": "6.0.0(20)"
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug"
+      },
+      {
+        "name": "profile"
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}

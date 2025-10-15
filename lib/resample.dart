@@ -19,6 +19,9 @@ final DynamicLibrary _dylib = () {
   if (Platform.isWindows) {
     return DynamicLibrary.open('$_libName.dll');
   }
+  if (Platform.operatingSystem == "ohos") {
+    return DynamicLibrary.open('lib$_libName.so');
+  }
   throw UnsupportedError('Unknown platform: ${Platform.operatingSystem}');
 }();
 
@@ -28,8 +31,7 @@ final ResampleBindings _bindings = ResampleBindings(_dylib);
 class Resample {
   Resample._();
 
-  static Uint8List resample(Uint8List bytes,
-      {required int inSampleRate, required int outSampleRate}) {
+  static Uint8List resample(Uint8List bytes, {required int inSampleRate, required int outSampleRate}) {
     return ffi.using((arena) {
       Int16List shorts = _bytesToShort(bytes);
       int length = shorts.length;
@@ -39,8 +41,7 @@ class Resample {
       int outputLength = ((outSampleRate / inSampleRate) * length).toInt() + 1;
 
       final outPtr = arena<Int16>(outputLength);
-      int ret = _bindings.resample_s16(
-          inputPtr, outPtr, inSampleRate, outSampleRate, length, 1);
+      int ret = _bindings.resample_s16(inputPtr, outPtr, inSampleRate, outSampleRate, length, 1);
       if (ret > 0) {
         return _shortToBytes(outPtr.asTypedList(ret));
       } else {
