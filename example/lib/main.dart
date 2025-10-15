@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pcm/pcm.dart';
 import 'package:resample/resample.dart';
 
 void main() {
@@ -42,10 +41,8 @@ class _MyAppState extends State<MyApp> {
                 children: [
                   TextButton(
                       onPressed: () async {
-                        await PCMPlayer.stop();
                         Uint8List bytes = await loadPCM();
-                        Uint8List newBytes = Resample.resample(bytes,
-                            inSampleRate: 16000, outSampleRate: 8000);
+                        Uint8List newBytes = Resample.resample(bytes, inSampleRate: 16000, outSampleRate: 8000);
                       },
                       child: Text('test')),
                 ],
